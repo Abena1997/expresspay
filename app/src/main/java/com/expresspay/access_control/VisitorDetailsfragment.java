@@ -83,8 +83,6 @@ public class VisitorDetailsfragment extends Fragment {
         checkInData.setVisitorPhone(number);
 
         Bundle bundle = new Bundle();
-//        bundle.putString("visitor name", name);
-//        bundle.putString("visitor phone", number);
         bundle.putSerializable("checkin_data", checkInData);
 
 

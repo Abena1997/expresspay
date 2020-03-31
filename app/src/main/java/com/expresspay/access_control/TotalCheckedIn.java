@@ -1,12 +1,15 @@
 package com.expresspay.access_control;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -20,6 +23,7 @@ import com.expresspay.access_control.models.GuestCheckedInData;
 import com.expresspay.access_control.models.GuestData;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import io.realm.Realm;
@@ -34,12 +38,14 @@ public class TotalCheckedIn extends Fragment {
     private RecyclerView checkedInRecyclerView;
     private GuestAdapter adapter;
 
+    private EditText searchList;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_total_checked_in, container, false);
 
+        searchList = view.findViewById(R.id.searchList);
         checkedInRecyclerView = view.findViewById(R.id.checkedIn_recyclerVew);
         return view;
     }
@@ -56,7 +62,7 @@ public class TotalCheckedIn extends Fragment {
         checkedInRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         // get guest list
-        adapter = new GuestAdapter(guestDataList, getContext());
+        adapter = new GuestAdapter(guestDataList, getActivity());
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
         dividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.recyclerview_divider));
@@ -64,9 +70,38 @@ public class TotalCheckedIn extends Fragment {
 
         //set adapter to this recycler view
         checkedInRecyclerView.setAdapter(adapter);
+
+
+        searchList.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable ) {
+                    filter(editable.toString());
+            }
+        });
+
+    }
+    private void filter(String text){
+        List<GuestCheckedInData> filteredList = new ArrayList<>();
+
+        for(GuestCheckedInData item : guestDataList){
+            if(item.getVisitorName().toLowerCase().contains(text.toLowerCase())){
+                filteredList.add(item);
+            }
+        }
+        adapter.filterList(filteredList);
     }
 
-    private void fetchCheckedInGuests(){
+    public void fetchCheckedInGuests(){
 
         Realm realm = Realm.getDefaultInstance();
         //fetch data from the database
@@ -74,9 +109,16 @@ public class TotalCheckedIn extends Fragment {
                 .equalTo("checkedOut",false)
                 .findAll();
 
-        // this tells the adapter that the data  has changed so it should reload the list
-        adapter.update(guestCheckedInData);
+        guestDataList = new ArrayList<>(realm.copyFromRealm(guestCheckedInData));
+        Collections.reverse(guestDataList);
+
+        //close the database
+        realm.close();
+
+        // this tells the adapter that the data  has changed so it should reload the list that contains the RealmResult
+        adapter.update(new ArrayList<>(guestDataList));
     }
+
 
     @Override
     public void onResume() {

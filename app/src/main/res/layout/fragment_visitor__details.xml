@@ -47,7 +47,8 @@
                 app:layout_constraintTop_toTopOf="@id/back_imageButton"
                 app:layout_constraintBottom_toBottomOf="@id/back_imageButton"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"
+                android:gravity="center_horizontal" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/fName_field"

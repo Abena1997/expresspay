@@ -37,15 +37,5 @@ public class NoCheckedInGuestFragment extends Fragment {
     }
 
 
-//    private void navigate() {
-//        Fragment fragmentVisitorDetails = new VisitorDetailsfragment();
-//
-//        FragmentTransaction transactionVisitorDetails = getFragmentManager().beginTransaction();
-//
-//        transactionVisitorDetails.add(R.id.fragment_container_fl, fragmentVisitorDetails);
-//        transactionVisitorDetails.addToBackStack(null);
-//
-//        transactionVisitorDetails.commit();
-//    }
 }
 

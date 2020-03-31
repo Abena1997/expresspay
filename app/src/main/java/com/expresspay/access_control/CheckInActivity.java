@@ -41,25 +41,4 @@ public class CheckInActivity extends AppCompatActivity {
 
     }
 
-  //  public void onRadioButtonClicked(View view) {
-
-           // boolean checked =((RadioButton) view ).isChecked();
-
-            //check which radio button was clicked
-         //   switch (view.getId()){
-          //      case R.id.personal_rbtn:
-           //         if(checked){
-            //            Toast.makeText(view.getContext(), "hello", Toast.LENGTH_SHORT).show();
-             //       }
-              //          break;
-
-             //   case R.id.officail_rbtn:
-               //     if(checked){
-                //        Toast.makeText(view.getContext(),"hey",Toast.LENGTH_SHORT).show();
-                 //   }
-
-                  //      break;
-          //  }
-
-
 }

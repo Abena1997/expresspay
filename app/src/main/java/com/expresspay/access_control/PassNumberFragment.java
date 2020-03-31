@@ -85,23 +85,7 @@ public class PassNumberFragment extends Fragment {
                 }
             }
         });
-
-
-
-
-
-    }
-
-//    private void navigate(){
-//        Fragment fragmentCheckInPopulated = new CheckInPopulatedStateFragment();
-//        FragmentTransaction transactionCheckInPopulated  = getFragmentManager().beginTransaction();
-//
-//
-//        transactionCheckInPopulated .replace(R.id.fragment_container_fl,fragmentCheckInPopulated );
-//        transactionCheckInPopulated .addToBackStack(null);
-//
-//        transactionCheckInPopulated .commit();
-//    }
+  }
 
         private boolean validate(){
         passNum = passNumber.getText().toString();
@@ -125,7 +109,9 @@ public class PassNumberFragment extends Fragment {
                 @Override
                 public void execute(Realm realm) {
                     GuestCheckedInData guestCheckedInData = new GuestCheckedInData();
-                    String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
+
+                    String currentTime = String.valueOf(System.currentTimeMillis());
+                    Log.e("Timestamp", currentTime);
 
                     guestCheckedInData.setVisitorName(checkInData.getVisitorName());
                     guestCheckedInData.setVisitorPhone(checkInData.getVisitorPhone());

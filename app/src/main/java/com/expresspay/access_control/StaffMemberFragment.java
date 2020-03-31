@@ -153,10 +153,6 @@ public class StaffMemberFragment extends Fragment {
         staffName = staffTextInputEditText.getText().toString();
         purpose = otherTextInputEditText.getText().toString();
 
-
-//            int selectedId = radioGroup.getCheckedRadioButtonId();
-//
-//            selectedRadioButton = radioGroup.findViewById(selectedId);
         if (selectedRadioText == null) {
 
             Toast.makeText(getContext(), "Radio Button Unchecked", Toast.LENGTH_SHORT).show();

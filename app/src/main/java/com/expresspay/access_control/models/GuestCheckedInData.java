@@ -1,6 +1,7 @@
 package com.expresspay.access_control.models;
 
 import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
 public class GuestCheckedInData extends RealmObject {
     private String visitorName;
@@ -8,7 +9,9 @@ public class GuestCheckedInData extends RealmObject {
     private String staffName;
     private String purpose;
     private String passNumber;
+    @PrimaryKey
     private String checkedInTime;
+
     private String checkedOutTime;
     private boolean checkedOut;
 
