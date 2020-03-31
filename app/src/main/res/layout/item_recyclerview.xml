@@ -31,17 +31,16 @@
         <TextView
             android:id="@+id/fullName_tv"
             android:layout_width="150sp"
-            android:layout_height="35sp"
-            android:text="Samuel Nyarko"
-            android:layout_marginTop="20sp"
-            android:textStyle="bold"
+            android:layout_height="25sp"
+            android:text=" "
+            android:layout_marginTop="30sp"
+            android:textStyle="bold" />
 
-            />
 
         <TextView
             android:id="@+id/checked_time_tv"
             android:layout_width="200sp"
-            android:layout_height="30sp"
+            android:layout_height="25sp"
             android:hint="Checked"/>
     </LinearLayout>
 
